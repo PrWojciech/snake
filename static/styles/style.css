@@ -1,3 +1,6 @@
 .snake {
     background-color: lime;
+    border: .25vmin solid black;
+    height: 25px;
+    width: 25px;
 }
