@@ -27,7 +27,7 @@ function pad(val) {
   }
 }
 
-
+let snakeBody = [[0, 0]];
 let snakeSize = 25
 const snake = document.querySelector('.snake')
 
@@ -38,5 +38,15 @@ function increaseSize () {
     console.log(snakeSize)
 }
 
+function updateSnakeSize() {
+    let tailArray = snakeBody.shift()
+    let tail = parseInt(tailArray[0] + '' + tailArray[1])
+    let headArray = snakeBody[snakeBody.length - 1]
+    let head = parseInt(headArray[0] + '' + headArray[1])
+}
+
+
 
 snake.addEventListener('click', increaseSize)
+
+
