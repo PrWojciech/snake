@@ -1,10 +1,10 @@
-// initGame();
-//
-// function initGame() {
-//
-//     // Your game can start here, but define separate functions, don't write everything in here :)
-//
-// }
+initGame();
+
+function initGame() {
+    addFruit()
+    // Your game can start here, but define separate functions, don't write everything in here :)
+
+}
 
 
 let minutesLabel = document.getElementById("minutes");
@@ -72,5 +72,13 @@ function movement (e){
 }
 
 
+
+}
+
+function addFruit (){
+    const board = document.querySelector('#game_board')
+    const newFruit = document.createElement('div')
+    newFruit.classList.add('fruit')
+    board.append(newFruit)
 
 }

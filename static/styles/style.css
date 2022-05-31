@@ -5,6 +5,13 @@
     position: relative;
 }
 
+.fruit {
+    background-color: red;
+    height: 25px;
+    width: 25px;
+
+}
+
 body{
     background:
     linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
