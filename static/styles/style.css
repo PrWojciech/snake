@@ -3,6 +3,8 @@
     border: .25vmin solid black;
     height: 25px;
     width: 25px;
+
+    position: relative;
 }
 
 body{
@@ -29,3 +31,4 @@ body{
     color: white;
     font-size: 50px;
 }
+.left
