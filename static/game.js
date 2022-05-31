@@ -15,7 +15,7 @@ setInterval(setTime, 1000);
 function setTime() {
   ++totalSeconds;
   secondsLabel.innerHTML = pad(totalSeconds % 60);
-  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+  minutesLabel.innerHTML = pad(parseInt((totalSeconds) / 60));
 }
 
 function pad(val) {
