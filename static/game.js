@@ -27,22 +27,26 @@ function pad(val) {
   }
 }
 
+const gameBoard = document.querySelector('#game_board')
+let snakeBody = [
+    {colX: 10, colY: 11},
+    {colX: 11, colY: 11},
 
-let snakeSize = 25
+];
 
-let move = 25;
-const snake = document.querySelector('.snake')
-snake.style.left = 0;
-snake.style.top = 0;
-
-function increaseSize () {
-    snakeSize += 25
-    snake.style.height = snakeSize + 'px'
-    console.log(snakeSize)
+function drawSnake(gameBoard) {
+    snakeBody.forEach(segment => {
+        const snakeDiv = document.createElement('div')
+        snakeDiv.style.gridRowStart = segment.colX
+        snakeDiv.style.gridColumnStart = segment.colY
+        snakeDiv.classList.add('snake')
+        gameBoard.appendChild(snakeDiv)
+    })
 }
 
+drawSnake(gameBoard)
 
-snake.addEventListener('click', increaseSize)
+
 window.addEventListener("keyup", e=>{
     movement(e.key)
 })
