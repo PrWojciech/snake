@@ -1,7 +1,7 @@
 initGame();
 
 function initGame() {
-    addFruit()
+
     // Your game can start here, but define separate functions, don't write everything in here :)
 
 }
@@ -72,13 +72,19 @@ function movement (e){
 }
 
 
-
 }
 
 function addFruit (){
     const board = document.querySelector('#game_board')
     const newFruit = document.createElement('div')
     newFruit.classList.add('fruit')
+    let x = Math.floor(Math.random() * 21);
+    let y = Math.floor(Math.random() * 21);
+    // let x = 50
+    // let y = 50
+    newFruit.style.left = `${x}`;
+    newFruit.style.top = `${y}`;
     board.append(newFruit)
 
 }
+addFruit()
