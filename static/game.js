@@ -27,30 +27,26 @@ function pad(val) {
   }
 }
 
-let snakeBody = [[0, 0]];
-let snakeSize = 25
+const gameBoard = document.querySelector('#game_board')
+let snakeBody = [
+    {colX: 10, colY: 11},
+    {colX: 11, colY: 11},
 
-let move = 25;
-const snake = document.querySelector('.snake')
-snake.style.left = 0;
-snake.style.top = 0;
+];
 
-function increaseSize () {
-    snakeSize += 25
-    snake.style.height = snakeSize + 'px'
-    console.log(snakeSize)
+function drawSnake(gameBoard) {
+    snakeBody.forEach(segment => {
+        const snakeDiv = document.createElement('div')
+        snakeDiv.style.gridRowStart = segment.colX
+        snakeDiv.style.gridColumnStart = segment.colY
+        snakeDiv.classList.add('snake')
+        gameBoard.appendChild(snakeDiv)
+    })
 }
 
-function updateSnakeSize() {
-    let tailArray = snakeBody.shift()
-    let tail = parseInt(tailArray[0] + '' + tailArray[1])
-    let headArray = snakeBody[snakeBody.length - 1]
-    let head = parseInt(headArray[0] + '' + headArray[1])
-}
+drawSnake(gameBoard)
 
 
-
-snake.addEventListener('click', increaseSize)
 window.addEventListener("keyup", e=>{
     movement(e.key)
 })
