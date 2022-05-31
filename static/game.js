@@ -1,7 +1,7 @@
 initGame();
 
 function initGame() {
-
+    addFruit()
     // Your game can start here, but define separate functions, don't write everything in here :)
 
 }
@@ -82,13 +82,25 @@ function addFruit (){
     const board = document.querySelector('#game_board')
     const newFruit = document.createElement('div')
     newFruit.classList.add('fruit')
-    let x = Math.floor(Math.random() * 21);
-    let y = Math.floor(Math.random() * 21);
-    // let x = 50
-    // let y = 50
-    newFruit.style.left = `${x}`;
-    newFruit.style.top = `${y}`;
-    board.append(newFruit)
 
+    do  {
+        setFruitPosition(newFruit)
+    } while (isFruitOnSnake(newFruit));
+
+    board.append(newFruit)
 }
-addFruit()
+
+function setFruitPosition (newFruit) {
+    newFruit.style.gridColumnStart = Math.floor(Math.random() * 21)
+    newFruit.style.gridRowStart = Math.floor(Math.random() * 21)
+}
+
+function isFruitOnSnake (fruitPos) {
+    const snake = document.querySelectorAll('.snake')
+
+    for (let snakePos of snake) {
+        if (snakePos.style.gridRowStart === fruitPos.style.gridRowStart && snakePos.style.gridColumnStart === fruitPos.style.gridColumnStart) {
+            return true
+        }
+    }
+}
