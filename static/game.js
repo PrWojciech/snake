@@ -24,32 +24,33 @@ function increaseSize () {
 
 snake.addEventListener('click', increaseSize)
 window.addEventListener("keyup", e=>{
-    let snakeTop = parseInt(window.getComputedStyle(snake).getPropertyValue("top"))
-    let snakeLeft = parseInt(window.getComputedStyle(snake).getPropertyValue("Left"))
-   switch (e.key.toLowerCase()){
+    movement(e.key)
+})
 
+function movement (e){
+    {
+
+   switch (e.toLowerCase()){
        case "a":
-
            snake.style.left = parseInt(snake.style.left) - move + 'px';
-           console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("Left")))
+           // console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("Left")))
            break
        case "d":
            snake.style.left = parseInt(snake.style.left) + move + 'px';
-           console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("Left")))
+           // console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("Left")))
            break
        case "w":
             snake.style.top = parseInt(snake.style.top) - move + 'px';
-            console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("top")))
+            // console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("top")))
            break
        case "s":
-
             snake.style.top = parseInt(snake.style.top) + move + 'px';
-            console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("top")))
+            // console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("top")))
            break
-
-       position = 900
-        button.style.setProperty("--pos", position);
-        event.target.textContent ="Go Left!"
    }
 
-})
+}
+
+
+
+}
