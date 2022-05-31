@@ -23,14 +23,13 @@ function increaseSize () {
 
 
 snake.addEventListener('click', increaseSize)
-window.addEventListener("keyup", e=>{
+window.addEventListener("keydown", e=>{
     movement(e.key)
 })
 
-function movement (e){
+function movement (key){
     {
-
-   switch (e.toLowerCase()){
+   switch (key.toLowerCase()){
        case "a":
            snake.style.left = parseInt(snake.style.left) - move + 'px';
            // console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("Left")))
@@ -48,7 +47,6 @@ function movement (e){
             // console.log(parseInt(window.getComputedStyle(snake).getPropertyValue("top")))
            break
    }
-
 }
 
 
