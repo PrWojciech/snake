@@ -5,8 +5,13 @@ function initGame() {
     // Your game can start here, but define separate functions, don't write everything in here :)
 
 }
+const board = document.querySelector('#game_board')
+let newFruit = document.createElement('div')
+newFruit.classList.add('fruit')
+newFruit.style.gridColumnStart = 5;
+newFruit.style.gridRowStart = 5;
 
-
+board.append(newFruit)
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
 let totalSeconds = 0;
@@ -53,15 +58,21 @@ drawSnake(gameBoard)
 
 
 function addFruit (){
-    const board = document.querySelector('#game_board')
-    const newFruit = document.createElement('div')
-    newFruit.classList.add('fruit')
-
-    do  {
+    console.log("--------------------------------")
+    if(snakeBody[0].colX == newFruit.style.gridColumnStart && snakeBody[0].colY == newFruit.style.gridRowStart) {
+        let newFruit = document.createElement('div')
+        newFruit.classList.add('fruit')
         setFruitPosition(newFruit)
-    } while (isFruitOnSnake(newFruit));
+        console.log("HEHE")
+        board.append(newFruit)
+    }else{
+        board.append(newFruit)
 
-    board.append(newFruit)
+    }
+    console.log(snakeBody[0].colX)
+    console.log(snakeBody[0].colY)
+    console.log(newFruit.style.gridColumnStart)
+    console.log(newFruit.style.gridRowStart)
 }
 
 function setFruitPosition (newFruit) {
@@ -89,15 +100,16 @@ let direction = {colX:0,colY:0}
 let lastDirection = {colX:0,colY:0}
 
 function main (currentTime){
-    addFruit()
     window.requestAnimationFrame(main)
     const secondSinceLastRender = (currentTime - lastRenderTime) / 1000
-     console.log(secondSinceLastRender)
     if (secondSinceLastRender< 1 /snakeSpeed) return
 
     lastRenderTime=currentTime
     update()
     gameBoard.innerHTML=''
+
+    addFruit()
+
     drawSnake(gameBoard)
 
  }
@@ -136,4 +148,3 @@ window.addEventListener("keydown", e=>{
            break
    }
 })
-
