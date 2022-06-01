@@ -1,12 +1,14 @@
 let lastRenderTime = 0;
-const snakeSpeed = 4;
+const snakeSpeed = 2;
+let life = 1;
+let score =0;
 let direction = {colX:0,colY:0}
 let lastDirection = {colX:0,colY:0}
 const gameBoard = document.querySelector('#game_board')
 let snakeBody = [
     {colX: 10, colY: 11},
     {colX: 11, colY: 11},
-    {colX: 12, colY: 11},
+    {colX: 12, colY: 11},{colX: 13, colY: 11},{colX: 14, colY: 11},{colX: 15, colY: 11},{colX: 16, colY: 11},{colX: 17, colY: 11},
 ];
 let newFruit = document.createElement('div')
 newFruit.classList.add('fruit')
@@ -26,11 +28,16 @@ window.addEventListener("keydown", e=>{
 
 function initGame() {
     setTime()
-    drawSnake(gameBoard)
     window.requestAnimationFrame(main)
+
+
+
 
 }
 
+function getScore(){
+    return score
+}
 
 function setTime() {
   ++totalSeconds;
@@ -89,16 +96,46 @@ function main (currentTime){
     window.requestAnimationFrame(main)
     const secondSinceLastRender = (currentTime - lastRenderTime) / 1000
     if (secondSinceLastRender< 1 /snakeSpeed) return
-
     lastRenderTime=currentTime
     update()
+    if(life == 0){
+        openPopup()
+        gameBoard.innerHTML=''
+        return;
+    }
     gameBoard.innerHTML=''
-
     addFruit()
-
     drawSnake(gameBoard)
 
  }
+function openPopup(){
+    let popout = document.getElementById("popout")
+    popout.classList.add("open-popout")
+}
+function closePopup(){
+    let popout = document.getElementById("popout")
+    window.location.replace("http://localhost:63342/freestyle-javascript-game-javascript-KZwolski/main.html?_ijt=cno9d4olqapdq3b2cdfvdfo4tu")
+    popout.classList.remove("open-popout")
+
+
+}
+ function isWallHit(){
+    if((snakeBody[0].colX >20 || snakeBody[0].colX<0)||(snakeBody[0].colY >20 || snakeBody[0].colY<0)) {
+        return true
+    }
+
+}
+function isSnakeHit(){
+    for(let i=1; i<snakeBody.length;i++){
+        if(snakeBody[0].colX == snakeBody[i].colX && snakeBody[0].colY==snakeBody[i].colY)
+            return true
+    }
+}
+function colisionDetector(){
+    if (isWallHit() || isSnakeHit()){
+        life = 0;
+    }
+}
 
  function update(){
     for (let i =snakeBody.length-2; i>=0; i--){
@@ -106,6 +143,7 @@ function main (currentTime){
     }
    snakeBody[0].colX +=direction.colX
    snakeBody[0].colY +=direction.colY
+   colisionDetector()
    lastDirection = direction
 
 }
