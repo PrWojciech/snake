@@ -4,25 +4,24 @@ let direction = {colX:0,colY:0}
 let lastDirection = {colX:0,colY:0}
 const gameBoard = document.querySelector('#game_board')
 let snakeBody = [
-    {colX: 10, colY: 11},];
+    {colX: 10, colY: 11},{colX: 11, colY: 11},];
 let newFruit = document.createElement('div')
 newFruit.classList.add('fruit')
 newFruit.style.gridColumnStart = 5;
 newFruit.style.gridRowStart = 5;
-
 gameBoard.append(newFruit)
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
 let totalSeconds = 0;
 setInterval(setTime, 1000);
 initGame();
+
 function initGame() {
     setTime()
     drawSnake(gameBoard)
     window.requestAnimationFrame(main)
 
 }
-
 
 function setTime() {
   ++totalSeconds;
@@ -39,7 +38,6 @@ function pad(val) {
   }
 }
 
-
 function drawSnake(gameBoard) {
     snakeBody.forEach(segment => {
         const snakeDiv = document.createElement('div')
@@ -49,6 +47,7 @@ function drawSnake(gameBoard) {
         gameBoard.appendChild(snakeDiv)
     })
 }
+
 function addFruit (){
     if(isFruitOnSnake() ) {
         let newFruit1 = document.createElement('div')
@@ -76,7 +75,6 @@ function isFruitOnSnake () {
     }
 }
 
-
 function main (currentTime){
     window.requestAnimationFrame(main)
     const secondSinceLastRender = (currentTime - lastRenderTime) / 1000
@@ -91,6 +89,7 @@ function main (currentTime){
     drawSnake(gameBoard)
 
  }
+
 
  function update(){
     for (let i =snakeBody.length-2; i>=0; i--){
