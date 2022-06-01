@@ -1,21 +1,29 @@
 let lastRenderTime = 0;
-const snakeSpeed = 2;
+const snakeSpeed = 4;
 let direction = {colX:0,colY:0}
 let lastDirection = {colX:0,colY:0}
 const gameBoard = document.querySelector('#game_board')
 let snakeBody = [
-    {colX: 10, colY: 11},];
+    {colX: 10, colY: 11},
+    {colX: 11, colY: 11},
+    {colX: 12, colY: 11},
+];
 let newFruit = document.createElement('div')
 newFruit.classList.add('fruit')
 newFruit.style.gridColumnStart = 5;
 newFruit.style.gridRowStart = 5;
-
+drawSnake(gameBoard)
 gameBoard.append(newFruit)
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
 let totalSeconds = 0;
 setInterval(setTime, 1000);
-initGame();
+window.addEventListener("keydown", e=>{
+    if(e.key){
+        initGame()
+    }
+})
+
 function initGame() {
     setTime()
     drawSnake(gameBoard)
