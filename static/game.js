@@ -1,21 +1,28 @@
-initGame();
-
-function initGame() {
-
-    // Your game can start here, but define separate functions, don't write everything in here :)
-
-}
-const board = document.querySelector('#game_board')
+let lastRenderTime = 0;
+const snakeSpeed = 2;
+let direction = {colX:0,colY:0}
+let lastDirection = {colX:0,colY:0}
+const gameBoard = document.querySelector('#game_board')
+let snakeBody = [
+    {colX: 10, colY: 11},];
 let newFruit = document.createElement('div')
 newFruit.classList.add('fruit')
 newFruit.style.gridColumnStart = 5;
 newFruit.style.gridRowStart = 5;
 
-board.append(newFruit)
+gameBoard.append(newFruit)
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
 let totalSeconds = 0;
 setInterval(setTime, 1000);
+initGame();
+function initGame() {
+    setTime()
+    drawSnake(gameBoard)
+    window.requestAnimationFrame(main)
+
+}
+
 
 function setTime() {
   ++totalSeconds;
@@ -32,12 +39,6 @@ function pad(val) {
   }
 }
 
-const gameBoard = document.querySelector('#game_board')
-let snakeBody = [
-    {colX: 10, colY: 11},
-
-
-];
 
 function drawSnake(gameBoard) {
     snakeBody.forEach(segment => {
@@ -48,31 +49,17 @@ function drawSnake(gameBoard) {
         gameBoard.appendChild(snakeDiv)
     })
 }
-
-drawSnake(gameBoard)
-
-
-
-
-
-
-
 function addFruit (){
-    console.log("--------------------------------")
-    if(snakeBody[0].colX == newFruit.style.gridColumnStart && snakeBody[0].colY == newFruit.style.gridRowStart) {
-        let newFruit = document.createElement('div')
-        newFruit.classList.add('fruit')
-        setFruitPosition(newFruit)
-        console.log("HEHE")
-        board.append(newFruit)
+    if(isFruitOnSnake() ) {
+        let newFruit1 = document.createElement('div')
+        newFruit1.classList.add('fruit')
+        setFruitPosition(newFruit1)
+        newFruit.style.gridRowStart = newFruit1.style.gridRowStart
+        newFruit.style.gridColumnStart = newFruit1.style.gridColumnStart
+        gameBoard.append(newFruit)
     }else{
-        board.append(newFruit)
-
+        gameBoard.append(newFruit)
     }
-    console.log(snakeBody[0].colX)
-    console.log(snakeBody[0].colY)
-    console.log(newFruit.style.gridColumnStart)
-    console.log(newFruit.style.gridRowStart)
 }
 
 function setFruitPosition (newFruit) {
@@ -80,24 +67,15 @@ function setFruitPosition (newFruit) {
     newFruit.style.gridRowStart = Math.floor(Math.random() * 21)
 }
 
-function isFruitOnSnake (fruitPos) {
-    const snake = document.querySelectorAll('.snake')
+function isFruitOnSnake () {
 
-    for (let snakePos of snake) {
-        console.log(snakePos.style.gridRowStart)
-        if (snakePos.style.gridRowStart === fruitPos.style.gridRowStart && snakePos.style.gridColumnStart === fruitPos.style.gridColumnStart) {
-            console.log("du")
+    for (let i =0; i<snakeBody.length; i++) {
+        if (snakeBody[i].colX == newFruit.style.gridColumnStart && snakeBody[i].colY == newFruit.style.gridRowStart) {
             return   true
         }
     }
 }
 
-
-
-let lastRenderTime = 0;
-const snakeSpeed = 2;
-let direction = {colX:0,colY:0}
-let lastDirection = {colX:0,colY:0}
 
 function main (currentTime){
     window.requestAnimationFrame(main)
@@ -113,12 +91,8 @@ function main (currentTime){
     drawSnake(gameBoard)
 
  }
-window.requestAnimationFrame(main)
 
-
-
-
-function update(){
+ function update(){
     for (let i =snakeBody.length-2; i>=0; i--){
         snakeBody[i+1] = {...snakeBody[i]}
     }
