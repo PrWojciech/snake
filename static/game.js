@@ -1,3 +1,4 @@
+document.getElementById("start_button").addEventListener("click", initGame)
 let lastRenderTime = 0;
 const snakeSpeed = 2;
 let life = 1;
@@ -7,32 +8,21 @@ let lastDirection = {colX:0,colY:0}
 const gameBoard = document.querySelector('#game_board')
 let scoreDiv = document.querySelector('#Score')
 let snakeBody = [
-    {colX: 10, colY: 11},
-    {colX: 11, colY: 11},
-    {colX: 12, colY: 11},{colX: 13, colY: 11},{colX: 14, colY: 11},{colX: 15, colY: 11},{colX: 16, colY: 11},{colX: 17, colY: 11},
-];
+    {colX: 10, colY: 11},];
 let newFruit = document.createElement('div')
 newFruit.classList.add('fruit')
-newFruit.style.gridColumnStart = 5;
-newFruit.style.gridRowStart = 5;
-drawSnake(gameBoard)
-gameBoard.append(newFruit)
+newFruit.style.gridColumnStart = 1;
+newFruit.style.gridRowStart = 7;
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
 let totalSeconds = 0;
-setInterval(setTime, 1000);
-window.addEventListener("keydown", e=>{
-    if(e.key){
-        initGame()
-    }
-})
 
 function initGame() {
-    setTime()
+    setInterval(setTime, 1000);
     window.requestAnimationFrame(main)
-
-
-
+    console.log("---------------------------------------------")
+    console.log(document.getElementById("input1"))
+    console.log(document.getElementById("snake_color"))
 
 }
 
@@ -66,6 +56,9 @@ function drawSnake(gameBoard) {
         gameBoard.appendChild(snakeDiv)
     })
 }
+ function addSegment() {
+     snakeBody.push({...snakeBody[snakeBody.length - 1]})
+ }
 function addFruit (){
     if(isFruitOnSnake() ) {
         let newFruit1 = document.createElement('div')
@@ -74,14 +67,15 @@ function addFruit (){
         newFruit.style.gridRowStart = newFruit1.style.gridRowStart
         newFruit.style.gridColumnStart = newFruit1.style.gridColumnStart
         gameBoard.append(newFruit)
+        addSegment()
     }else{
         gameBoard.append(newFruit)
     }
 }
 
 function setFruitPosition (newFruit) {
-    newFruit.style.gridColumnStart = Math.floor(Math.random() * 21)
-    newFruit.style.gridRowStart = Math.floor(Math.random() * 21)
+    newFruit.style.gridColumnStart = Math.floor(Math.random() * 20)+1;
+    newFruit.style.gridRowStart = Math.floor(Math.random() * 20)+1;
 }
 
 function isFruitOnSnake () {
@@ -96,13 +90,15 @@ function isFruitOnSnake () {
 
 
 function main (currentTime){
+
     window.requestAnimationFrame(main)
     const secondSinceLastRender = (currentTime - lastRenderTime) / 1000
     if (secondSinceLastRender< 1 /snakeSpeed) return
     lastRenderTime=currentTime
     update()
     if(life == 0){
-        openPopup()
+        let popout = document.getElementById("popout")
+        openPopup(popout)
         gameBoard.innerHTML=''
         return;
     }
@@ -111,16 +107,16 @@ function main (currentTime){
     drawSnake(gameBoard)
 
  }
-function openPopup(){
-    let popout = document.getElementById("popout")
+function openPopup(element){
     let endscore = document.querySelector('#endScore')
     endscore.textContent = `Score: ${score}`
-    popout.classList.add("open-popout")
+    element.classList.add("open-popout")
 }
-function closePopup(){
-    let popout = document.getElementById("popout")
-    window.location.replace("http://localhost:63342/freestyle-javascript-game-javascript-KZwolski/main.html?_ijt=cno9d4olqapdq3b2cdfvdfo4tu")
-    popout.classList.remove("open-popout")
+function closePopup(element){
+    if (element === document.getElementById('popout'))
+    {
+    window.location.replace("http://localhost:63342/freestyle-javascript-game-javascript-KZwolski/main.html?_ijt=cno9d4olqapdq3b2cdfvdfo4tu")}
+    element.classList.remove("open-popout")
 
 
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/styles/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Blaka&display=swap" rel="stylesheet">
+    <title>Snake Game</title>
+</head>
+<body>
+<a href="/"> <div id="logo">Snake Game</div></a>
+
+<div class="popout" id="popout1">
+    <h2>Enter nickname: </h2>
+    <label>
+        <input type="text" id="input1" placeholder="Nickname" name="username">
+    </label>
+    <p>Choose snake color:</p>
+    <label for="snake_color"></label><select name="snake_color" id="snake_color">
+      <option style="background-color: green" value="green">green</option>
+      <option style="background-color: red" value="red">red</option>
+      <option style="background-color: blue" value="blue">blue</option>
+      <option style="background-color: white" value="white">white</option>
+    </select>
+    <button type="button" id="start_button" onclick="closePopup(document.getElementById('popout1'))" >Start Game</button>
+</div>
+<a href="/index" onclick="openPopup(document.getElementById('popout1'))"><div class="option">Start Game</div></a>
+<a href="/index"><div class="option">Highest Score</div></a>
+<a href="/index"><div class="option">Exit</div></a>
+</body>
+</html>

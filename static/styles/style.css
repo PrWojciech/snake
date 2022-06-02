@@ -133,3 +133,28 @@ a:hover
     cursor: pointer;
     box-shadow: 0 5px 5px ;
 }
+#input1{
+        width:300px;
+        background-color: #efefef;
+        color: #666;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        font-size:20px;
+        padding:10px;
+        box-sizing: border-box;
+        cursor: text;
+    }
+#snake_color{
+        width:300px;
+        background-color: #efefef;
+        color: black;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        font-size:20px;
+        padding:10px;
+        box-sizing: border-box;
+        cursor: pointer;
+}
+#snake_color:hover{
+    background-color: rgba(255, 255, 255, 0);
+}

@@ -6,7 +6,7 @@
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
     <link href="https://fonts.googleapis.com/css2?family=Blaka&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
 </head>
 <body>
     <a href="main.html"> <div id="logo">Snake Game</div></a>
@@ -17,12 +17,12 @@
     <div class="popout" id="popout">
             <h2>You Lost!</h2>
             <p id="endScore">Score:</p>
-            <button type="button" onclick="closePopup()">Main Menu</button>
+            <button type="button" onclick="closePopup(document.getElementById('popout'))">Main Menu</button>
     </div>
     <div id="game_board">
     </div>
 
 
-<script src="static/game.js"></script>
+<script src="../static/game.js"></script>
 </body>
 </html>
