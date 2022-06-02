@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/styles/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Blaka&display=swap" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+<a href="/"> <div id="logo">Snake Game</div></a>
+
+<table style="width: 50%; color:white; text-align: center; font-size: 40px; margin-left: 20%">
+            <tr>
+            {% for title in titles %}
+                <th>{{ title }}</th>
+            {% endfor %}
+            </tr>
+            {% for score in highest_scores %}
+                    <tr>
+                        {% for key, value in score.items() %}
+                                <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+        </table>
+
+</body>
+</html>

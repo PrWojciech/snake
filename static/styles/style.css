@@ -110,7 +110,7 @@ a:hover
     left: 50%;
     transform: translate(-50%, -50%) scale(0.1);
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     padding: 0 30px 30px;
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
@@ -118,14 +118,15 @@ a:hover
 .open-popout{
     visibility: visible;
     top:50%;
+    width:500px;
     transform: translate(-50%, -50%) scale(1);
 }
 .popout button{
     width: 100%;
-    margin-top: 50px;
     padding: 10px 0;
     background: black;
     color: white;
+    margin-top: 30px;
     border: 0;
     outline: none;
     font-size: 20px;

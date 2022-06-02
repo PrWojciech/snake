@@ -108,6 +108,9 @@ function main (currentTime){
 
  }
 function openPopup(element){
+    if (element === document.getElementById('popout'))
+    {
+    window.location.replace("/index/"+score)}
     let endscore = document.querySelector('#endScore')
     endscore.textContent = `Score: ${score}`
     element.classList.add("open-popout")
@@ -115,7 +118,7 @@ function openPopup(element){
 function closePopup(element){
     if (element === document.getElementById('popout'))
     {
-    window.location.replace("http://localhost:63342/freestyle-javascript-game-javascript-KZwolski/main.html?_ijt=cno9d4olqapdq3b2cdfvdfo4tu")}
+    window.location.replace("/")}
     element.classList.remove("open-popout")
 
 
