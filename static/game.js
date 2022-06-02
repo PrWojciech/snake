@@ -5,6 +5,7 @@ let score =0;
 let direction = {colX:0,colY:0}
 let lastDirection = {colX:0,colY:0}
 const gameBoard = document.querySelector('#game_board')
+let scoreDiv = document.querySelector('#Score')
 let snakeBody = [
     {colX: 10, colY: 11},
     {colX: 11, colY: 11},
@@ -36,7 +37,8 @@ function initGame() {
 }
 
 function getScore(){
-    return score
+    score += 10
+    scoreDiv.innerText = `Score: ${score}`
 }
 
 function setTime() {
@@ -86,6 +88,7 @@ function isFruitOnSnake () {
 
     for (let i =0; i<snakeBody.length; i++) {
         if (snakeBody[i].colX == newFruit.style.gridColumnStart && snakeBody[i].colY == newFruit.style.gridRowStart) {
+            getScore()
             return   true
         }
     }
@@ -110,6 +113,8 @@ function main (currentTime){
  }
 function openPopup(){
     let popout = document.getElementById("popout")
+    let endscore = document.querySelector('#endScore')
+    endscore.textContent = `Score: ${score}`
     popout.classList.add("open-popout")
 }
 function closePopup(){
