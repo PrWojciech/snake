@@ -1,8 +1,9 @@
 document.getElementById("start_button").addEventListener("click", initGame)
 let lastRenderTime = 0;
-const snakeSpeed = 2;
+let snakeSpeed = 3;
 let life = 1;
 let score =0;
+let scoreForSpeedup = 30
 let direction = {colX:0,colY:0}
 let lastDirection = {colX:0,colY:0}
 const gameBoard = document.querySelector('#game_board')
@@ -27,8 +28,15 @@ function initGame() {
 }
 
 function getScore(){
-    score += 10
+    score += 7 + snakeSpeed
     scoreDiv.innerText = `Score: ${score}`
+}
+
+function increaseSpeed () {
+    if (score >= scoreForSpeedup) {
+        snakeSpeed += 2
+        scoreForSpeedup += 30 + snakeSpeed*2
+    }
 }
 
 function setTime() {
@@ -45,7 +53,6 @@ function pad(val) {
     return valString;
   }
 }
-
 
 function drawSnake(gameBoard) {
     snakeBody.forEach(segment => {
@@ -83,11 +90,11 @@ function isFruitOnSnake () {
     for (let i =0; i<snakeBody.length; i++) {
         if (snakeBody[i].colX == newFruit.style.gridColumnStart && snakeBody[i].colY == newFruit.style.gridRowStart) {
             getScore()
-            return   true
+            increaseSpeed()
+            return true
         }
     }
 }
-
 
 function main (currentTime){
 
@@ -120,9 +127,8 @@ function closePopup(element){
     {
     window.location.replace("/")}
     element.classList.remove("open-popout")
-
-
 }
+
  function isWallHit(){
     if((snakeBody[0].colX >20 || snakeBody[0].colX<0)||(snakeBody[0].colY >20 || snakeBody[0].colY<0)) {
         return true
@@ -135,6 +141,7 @@ function isSnakeHit(){
             return true
     }
 }
+
 function colisionDetector(){
     if (isWallHit() || isSnakeHit()){
         life = 0;
@@ -151,6 +158,7 @@ function colisionDetector(){
    lastDirection = direction
 
 }
+
 window.addEventListener("keydown", e=>{
   switch (e.key.toLowerCase()){
        case "a":
