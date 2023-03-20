@@ -73,5 +73,5 @@ None
 
 
 <a href="https://github.com/PrWojciech">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ochotadariusz&hide_border=true&layout=compact&count_private=true&hide=stars&show_icons=true&theme=onedark&custom_title=Languages%20I%20Use!" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=PrWojciech&hide_border=true&layout=compact&count_private=true&hide=stars&show_icons=true&theme=onedark&custom_title=Languages%20I%20Use!" />
 </a>
